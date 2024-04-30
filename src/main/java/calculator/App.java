@@ -1,15 +1,18 @@
 package calculator;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // 결과값을 저장하기 위한 배열 선언
-        double[] resultArr = new double[10];
-        int index = 0;
+
+        // 결과값을 저장하기 위한 큐 사용
+        Queue<Double> resultQueue = new LinkedList<>();
+
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
             double num1 = sc.nextInt();
@@ -48,28 +51,23 @@ public class App {
             }
             System.out.println("결과: " + result);
 
-            // index가 마지막 들어간 숫자의 index++이 되기 때문에
-            // index == 10에 값을 넣어야하는 경우 숫자 하나를 지우고 추가함
-            if (index == 10) {
-                // 배열을 한개씩 당기고
-                for (int i = 0; i < index-1; i++) {
-                    resultArr[i] = resultArr[i + 1];
-                }
-                // resultArr[9]에 숫자를 넣는다
-                resultArr[index-1] = result;
-            } else {
-                // resultArr에 index값에 맞춰 결과값을 넣어준다
-                resultArr[index] = result;
-                // index값 1 증가
-                index++;
-            }
+            // 결과값 resultQueue에 저장
+            resultQueue.offer(result);
 
+            // 삭제 여부 묻고 remove 입력 시 삭제
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String remove = sc.next();
+            if (remove.equals("remove")) {
+                // 큐로 먼저 가장 먼저 저장된 연산 결과 제거
+                Double removeNum = resultQueue.poll();
+                System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
+            }
 
             // 종료 여부 묻고 exit 입력 시 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String exit = sc.next();
             if (exit.equals("exit")) {
-                System.out.println("Arrays.toString(resultArr) = " + Arrays.toString(resultArr));
+                System.out.println("전체 결과값 = " + Arrays.toString(resultQueue.toArray()));
                 break;
             }
         }
