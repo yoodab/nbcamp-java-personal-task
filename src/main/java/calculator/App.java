@@ -63,6 +63,19 @@ public class App {
                 System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
             }
 
+            // 저장된 연산결과 조회할지 묻고 inquiry 입력 시 조회
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String inquiry = sc.next();
+            if (inquiry.equals("inquiry")) {
+                int i = 1;
+                // 향상된 for문을 활용해 결과값 출력
+                for (double R : resultQueue) {
+                    System.out.println(i+"번째 결과값 = "+R);
+                    i++;
+                }
+            }
+
+
             // 종료 여부 묻고 exit 입력 시 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String exit = sc.next();
