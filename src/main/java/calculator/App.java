@@ -1,11 +1,15 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // 결과값을 저장하기 위한 배열 선언
+        double[] resultArr = new double[10];
+        int index = 0;
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
             double num1 = sc.nextInt();
@@ -35,12 +39,22 @@ public class App {
                         result = num1 / num2;
                     }
                     break;
+
+                // +, -, *, / 이외의 값이 들어오면 default로 가서
+                // "사칙연산 기호를 잘못입력하였습니다." 출력
+                default:
+                    System.out.println("사칙연산 기호를 잘못입력하였습니다.");
+                    break;
             }
             System.out.println("결과: " + result);
+            // resultArr에 index값에 맞춰 결과값을 넣어준다
+            resultArr[index] = result;
+            // index값 1 증가
+            index++;
 
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String exit = sc.next();
-            if (exit.equals("exit")){
+            // 10개 까지 입력받고 10개 값 출력하기
+            if (index == 10){
+                System.out.println("resultArr = " + Arrays.toString(resultArr));
                 break;
             }
         }
