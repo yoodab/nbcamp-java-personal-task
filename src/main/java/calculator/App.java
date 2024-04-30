@@ -47,14 +47,29 @@ public class App {
                     break;
             }
             System.out.println("결과: " + result);
-            // resultArr에 index값에 맞춰 결과값을 넣어준다
-            resultArr[index] = result;
-            // index값 1 증가
-            index++;
 
-            // 10개 까지 입력받고 10개 값 출력하기
-            if (index == 10){
-                System.out.println("resultArr = " + Arrays.toString(resultArr));
+            // index가 마지막 들어간 숫자의 index++이 되기 때문에
+            // index == 10에 값을 넣어야하는 경우 숫자 하나를 지우고 추가함
+            if (index == 10) {
+                // 배열을 한개씩 당기고
+                for (int i = 0; i < index-1; i++) {
+                    resultArr[i] = resultArr[i + 1];
+                }
+                // resultArr[9]에 숫자를 넣는다
+                resultArr[index-1] = result;
+            } else {
+                // resultArr에 index값에 맞춰 결과값을 넣어준다
+                resultArr[index] = result;
+                // index값 1 증가
+                index++;
+            }
+
+
+            // 종료 여부 묻고 exit 입력 시 종료
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
+            String exit = sc.next();
+            if (exit.equals("exit")) {
+                System.out.println("Arrays.toString(resultArr) = " + Arrays.toString(resultArr));
                 break;
             }
         }
