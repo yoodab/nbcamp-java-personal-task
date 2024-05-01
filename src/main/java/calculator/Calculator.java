@@ -4,12 +4,28 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    private Queue<Double> resultQueue;
+    // static, final 키워드를 활용한 이유
+    // 원주율은 변하지 않는 상수이기 때문에 final static 사용함(수정불가, 선언없이 사용가능)
+    private static final double PI = 3.141;
 
     // 생성자를 통해 연산 결과를 저장하는 컬렉션 필드 초기화
     public Calculator() {
         this.resultQueue = new LinkedList<>();
+        this.circleAreaQueue = new LinkedList<>();
     }
+    private Queue<Double> resultQueue;
+
+    private Queue<Double> circleAreaQueue;
+
+    public Queue<Double> getCircleArea() {
+        return circleAreaQueue;
+    }
+
+    public void setCircleArea(Queue<Double> circleAreaQueue) {
+        this.circleAreaQueue = circleAreaQueue;
+    }
+
+
 
     public Queue<Double> getResultQueue() {
         return resultQueue;
@@ -28,6 +44,15 @@ public class Calculator {
         // 향상된 for문을 활용해 결과값 출력
         for (double R : resultQueue) {
             System.out.println(i+"번째 결과값 = "+R);
+            i++;
+        }
+    }
+
+    public void inquiryCircleResults() {
+        int i = 1;
+        // 향상된 for문을 활용해 결과값 출력
+        for (double R : circleAreaQueue) {
+            System.out.println(i+"번째 원의 넓이 결과값 = "+R);
             i++;
         }
     }
@@ -58,10 +83,13 @@ public class Calculator {
                 throw new InvalidOperatorException("잘못된 연산자 기호가 입력되었습니다.");
         }
 
-        // 연산 결과를 저장하는 컬렉션 필드에 추가
-        resultQueue.offer(result);
-
 
         return result;
     }
+
+    public double calculateCircleArea(double rad){
+        return rad*rad*PI;
+    }
+
+
 }
