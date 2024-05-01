@@ -4,7 +4,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    Queue<Double> resultQueue = new LinkedList<>();
+    private Queue<Double> resultQueue = new LinkedList<>();
+
+    public Queue<Double> getResultQueue() {
+        return resultQueue;
+    }
+
+    public void setResultQueue(Queue<Double> resultQueue) {
+        this.resultQueue = resultQueue;
+    }
+
     public double calculate(double num1, double num2, char operator) throws DivideByZeroException,InvalidOperatorException{
         double result=0;
         switch (operator) {

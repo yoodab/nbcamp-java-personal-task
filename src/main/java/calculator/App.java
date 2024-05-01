@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.Arrays;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
@@ -8,6 +9,7 @@ public class App {
     public static void main(String[] args) throws InvalidOperatorException, DivideByZeroException {
         Scanner sc = new Scanner(System.in);
         Calculator ca = new Calculator();
+
 
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -23,15 +25,17 @@ public class App {
 
             System.out.println("결과: " + result);
 
-            // 결과값 resultQueue에 저장
-            ca.resultQueue.offer(result);
+            // 결과값 currentResultQueue에 추가후 setter로 resultQueue에 저장
+            Queue<Double> currentResultQueue = ca.getResultQueue();
+            currentResultQueue.offer(result);
+            ca.setResultQueue(currentResultQueue);
 
             // 삭제 여부 묻고 remove 입력 시 삭제
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             String remove = sc.next();
             if (remove.equals("remove")) {
                 // 큐로 먼저 가장 먼저 저장된 연산 결과 제거
-                Double removeNum = ca.resultQueue.poll();
+                Double removeNum = ca.getResultQueue().poll();
                 System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
             }
 
@@ -41,7 +45,7 @@ public class App {
             if (inquiry.equals("inquiry")) {
                 int i = 1;
                 // 향상된 for문을 활용해 결과값 출력
-                for (double R : ca.resultQueue) {
+                for (double R : ca.getResultQueue()) {
                     System.out.println(i+"번째 결과값 = "+R);
                     i++;
                 }
@@ -52,7 +56,7 @@ public class App {
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String exit = sc.next();
             if (exit.equals("exit")) {
-                System.out.println("전체 결과값 = " + Arrays.toString(ca.resultQueue.toArray()));
+                System.out.println("전체 결과값 = " + Arrays.toString(ca.getResultQueue().toArray()));
                 break;
             }
         }
