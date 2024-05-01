@@ -7,7 +7,8 @@ public class App {
 
     public static void main(String[] args) throws InvalidOperatorException, DivideByZeroException {
         Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator ariCa = new ArithmeticCalculator();
+        ArithmeticCalculator ariCa = new ArithmeticCalculator(new AddOperator(), new SubtractOperator(),
+                                        new MultiplyOperator(), new DivideOperator());
         CircleCalculator cirCa = new CircleCalculator();
 
         while (true) {
@@ -16,17 +17,17 @@ public class App {
             String resp = sc.next();
 
 
-            if(resp.equals("cal")){
+            if (resp.equals("cal")) {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
-                double num1 = sc.nextInt();
+                int num1 = sc.nextInt();
 
                 System.out.print("두 번째 숫자를 입력하세요: ");
-                double num2 = sc.nextInt();
+                int num2 = sc.nextInt();
 
                 System.out.print("사칙연산 기호를 입력하세요: ");
                 char operator = sc.next().charAt(0);
 
-                ariCa.setNumOperator(num1,num2,operator);
+                ariCa.setNumOperator(num1, num2, operator);
                 double result = ariCa.calculate();
 
                 //결과 출력
@@ -82,10 +83,9 @@ public class App {
                     break;
                 }
 
-            }else{
+            } else {
                 System.out.println("계산 방식을 잘못 입력하셨습니다.");
             }
-
 
 
         }

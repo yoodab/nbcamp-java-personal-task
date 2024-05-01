@@ -24,7 +24,7 @@ abstract class Calculator {
     }
 
     public void removeResult() {
-        Double removeNum = resultQueue.poll();
+        double removeNum = resultQueue.poll();
         System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
     }
     public void inquiryResults() {
