@@ -35,8 +35,7 @@ public class App {
             String remove = sc.next();
             if (remove.equals("remove")) {
                 // 큐로 먼저 가장 먼저 저장된 연산 결과 제거
-                Double removeNum = ca.getResultQueue().poll();
-                System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
+                ca.removeResult();
             }
 
             // 저장된 연산결과 조회할지 묻고 inquiry 입력 시 조회

@@ -14,8 +14,13 @@ public class Calculator {
         this.resultQueue = resultQueue;
     }
 
-    public double calculate(double num1, double num2, char operator) throws DivideByZeroException,InvalidOperatorException{
-        double result=0;
+    public void removeResult() {
+        Double removeNum = resultQueue.poll();
+        System.out.println("가장 먼저 저장된 연산 결과 " + removeNum + "이 삭제되었습니다.");
+    }
+
+    public double calculate(double num1, double num2, char operator) throws DivideByZeroException, InvalidOperatorException {
+        double result = 0;
         switch (operator) {
             case '+':
                 result = num1 + num2;
