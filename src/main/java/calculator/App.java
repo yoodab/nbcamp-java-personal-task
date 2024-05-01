@@ -1,28 +1,20 @@
 package calculator;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
 public class App {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         // 결과값을 저장하기 위한 큐 사용
         Queue<Double> resultQueue = new LinkedList<>();
-
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
             double num1 = sc.nextInt();
-
             System.out.print("두 번째 숫자를 입력하세요: ");
             double num2 = sc.nextInt();
-
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator = sc.next().charAt(0);
-
             double result = 0;
             switch (operator) {
                 case '+':
@@ -42,7 +34,6 @@ public class App {
                         result = num1 / num2;
                     }
                     break;
-
                 // +, -, *, / 이외의 값이 들어오면 default로 가서
                 // "사칙연산 기호를 잘못입력하였습니다." 출력
                 default:
@@ -84,6 +75,5 @@ public class App {
                 break;
             }
         }
-
     }
 }
