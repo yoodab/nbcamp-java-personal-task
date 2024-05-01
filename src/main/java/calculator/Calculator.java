@@ -4,7 +4,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    private Queue<Double> resultQueue = new LinkedList<>();
+    private Queue<Double> resultQueue;
+
+    // 생성자를 통해 연산 결과를 저장하는 컬렉션 필드 초기화
+    public Calculator() {
+        this.resultQueue = new LinkedList<>();
+    }
 
     public Queue<Double> getResultQueue() {
         return resultQueue;
@@ -52,6 +57,11 @@ public class Calculator {
                 // 잘못된 연산자 기호가 들어오는 경우 InvalidOperatorException 예외를 던집니다.
                 throw new InvalidOperatorException("잘못된 연산자 기호가 입력되었습니다.");
         }
+
+        // 연산 결과를 저장하는 컬렉션 필드에 추가
+        resultQueue.offer(result);
+
+
         return result;
     }
 }

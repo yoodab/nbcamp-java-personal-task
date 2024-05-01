@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.Arrays;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
@@ -25,10 +24,6 @@ public class App {
 
             System.out.println("결과: " + result);
 
-            // 결과값 currentResultQueue에 추가후 setter로 resultQueue에 저장
-            Queue<Double> currentResultQueue = ca.getResultQueue();
-            currentResultQueue.offer(result);
-            ca.setResultQueue(currentResultQueue);
 
             // 삭제 여부 묻고 remove 입력 시 삭제
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
